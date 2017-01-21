@@ -18,7 +18,6 @@ Packages
 --------
 
 * `core`: configs for *command line programs*
-* `desktop`: configs for desktop programs (e.g. browser)
 
 
 TODO
