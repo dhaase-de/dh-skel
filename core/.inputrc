@@ -1,0 +1,47 @@
+##
+## settings
+##
+
+# be 8 bit clean
+set input-meta on
+set output-meta on
+
+# do not bell on tab-completion
+set bell-style none
+
+# larger history size
+set history-size 10000
+
+# suppress common prefixes for completion
+set completion-prefix-display-length 3
+
+# do not insert full text for completion in the middle of a word
+set skip-completed-text on
+
+##
+## key bindings
+##
+
+# use Ctrl-left-arrow and Ctrl-right-arrow to move to the beginning/end of a line
+"\e[1;5C": end-of-line
+"\e[1;5D": beginning-of-line
+"\e[5C": end-of-line
+"\e[5D": beginning-of-line
+"\e\e[C": end-of-line
+"\e\e[D": beginning-of-line
+
+# use "page up" and "page down" to search the history
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
+
+# cycle through available tab completions
+Control-n: menu-complete
+Control-b: menu-complete-backward
+
+# allow the use of the Home/End keys
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+
+# allow the use of the Delete/Insert keys
+"\e[3~": delete-char
+"\e[2~": quoted-insert

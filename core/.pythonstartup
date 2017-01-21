@@ -1,0 +1,17 @@
+##
+## usability 
+##
+
+# enable tab completion for Python 2 (not neccesary for Python 3)
+# (see http://docs.python.org/2/tutorial/interactive.html and http://stackoverflow.com/questions/246725/how-do-i-add-tab-completion-to-the-python-shell)
+import sys
+if sys.version_info[0] == 2:
+    try:
+        import readline
+        readline.parse_and_bind('tab: complete')
+    except Exception:
+        pass
+    else:
+        import rlcompleter
+        readline.parse_and_bind("tab: complete")
+

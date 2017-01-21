@@ -1,0 +1,38 @@
+[alias]
+an = annex
+br = branch
+cm = checkout master
+co = checkout
+di = diff
+dc = diff --cached
+lo = log --graph
+st = status
+
+[core]
+pager = less -R
+
+[color]
+branch = auto
+diff = auto
+grep = auto
+pager = true
+status = auto
+
+[format]
+pretty = %ai (%an)  [%Cgreen%h%Creset]%Cred%d%Creset  %s
+
+[help]
+autocorrect = 0
+
+[push]
+#default = simple
+
+[rebase]
+stat = true
+
+[status]
+branch = true
+short = true
+
+[push]
+default = simple
