@@ -9,9 +9,20 @@ Installation
 
 Symlinks for all files are created via
 
-    ./install.sh
+    ./install.sh [package1] [package2] [...]
 
+If no packages are specified, all valid packages are considered (see below).
 Existing files are backed up, nothing should be lost. See `install.sh` for details.
+
+
+Uninstallation
+--------------
+
+Similar to installation
+
+    ./install.sh -u [package1] [package2] [...]
+
+If no packages are specified, all valid packages are considered (see below).
 
 
 Packages
@@ -24,6 +35,4 @@ TODO
 ----
 
 * only install files which are versioned in the Git repo (prevents installing garbage files)
-* pass packages to be installed as arguments to `install.sh`
-* add option to uninstall linked files (and/or revert to last backup)
 
