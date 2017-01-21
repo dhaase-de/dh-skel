@@ -1,3 +1,7 @@
+[user]
+name = Daniel Haase
+email = git@dhaase.de
+
 [alias]
 an = annex
 br = branch
