@@ -9,7 +9,7 @@ DIR_SCRIPT=$(cd "$(dirname "$0")" && pwd)
 DIR_TARGET="$HOME"
 DIR_BACKUP="$DIR_TARGET"/.dh-skel.install.bak.$(date '+%Y%m%d-%H%M%S')
 
-PACKAGES="core utils"
+PACKAGES="core"
 
 for PACKAGE in $PACKAGES; do
     DIR_SOURCE="$DIR_SCRIPT"/"$PACKAGE"
