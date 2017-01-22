@@ -292,7 +292,12 @@ unset R_LIBS
 export R_LIBS_USER="$HOME/R/library/%V"
 
 # python
-alias py="$(which python3)"
+which bpython3 > /dev/null
+if [ $? -eq 0 ]; then
+    alias p3=$(which bpython3)
+else
+    alias p3=$(which python3)
+fi
 export PYTHONSTARTUP="$HOME/.pythonstartup"
 
 #-------------------------------------------------------------------------------
