@@ -28,7 +28,8 @@ If no packages are specified, all valid packages are considered (see below).
 Packages
 --------
 
-* `core`: configs for *command line programs*
+* `core`: config files for command line programs
+* `utils`: small helper scripts and programs
 
 
 TODO

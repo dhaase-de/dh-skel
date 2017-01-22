@@ -28,7 +28,7 @@ done
 
 # if no packages were specified, use all packages
 if [ "$PACKAGES" == "" ]; then
-    PACKAGES=" core"
+    PACKAGES=" core utils"
 fi
 
 # show actions and ask for user confirmation
