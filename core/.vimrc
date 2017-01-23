@@ -6,21 +6,21 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 
+" show tabs
+set list
+set listchars=tab:>-
+
+" use <Shift-Tab> to insert real tab
+inoremap <S-Tab> <C-V><Tab>
+
 " turn on autoindent
 set autoindent
 
 " can be used to turn off autoindent when pasting
 set pastetoggle=<F3>
 
-" show tabs
-set list
-set listchars=tab:>-
-
 " show line numbers
 set number
-
-" allow mouse in normal, visual and insert mode
-set mouse=nvi
 
 " highlight results of search
 set hlsearch
@@ -33,6 +33,9 @@ set showcmd
 
 " CTRL-m will run a make command
 map <c-m> :! make<cr>
+
+" allow mouse in normal, visual and insert mode
+set mouse=nvi
 
 " color scheme
 colorscheme delek
