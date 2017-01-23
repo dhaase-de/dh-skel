@@ -9,6 +9,9 @@ set softtabstop=4
 " turn on autoindent
 set autoindent
 
+" can be used to turn off autoindent when pasting
+set pastetoggle=<F3>
+
 " show tabs
 set list
 set listchars=tab:>-
