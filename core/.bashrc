@@ -282,6 +282,11 @@ alias gputop="watch -n1 nvidia-smi"
 alias mkdit="mkdir"
 alias dc="cd"
 
+# root
+alias aps="aptitude search"
+alias api="aptitude install"
+alias asi='eval "$(history | sed "s/^\s*[0-9]\+\s\+//" | grep "^aps \([-a-zA-Z0-9]\+\s*\)*$" | tail -n1 | sed "s/^aps /api /")"'
+
 #-------------------------------------------------------------------------------
 # programming languages
 #-------------------------------------------------------------------------------
