@@ -281,6 +281,7 @@ alias gputop="watch -n1 nvidia-smi"
 # common typos
 alias mkdit="mkdir"
 alias dc="cd"
+alias whoch='which'
 
 # root
 alias aps="aptitude search"
@@ -296,14 +297,48 @@ alias R='R --no-save --no-restore --no-site-file --no-environ'
 unset R_LIBS
 export R_LIBS_USER="$HOME/R/library/%V"
 
-# python
+#-------------------------------------------------------------------------------
+# Python
+#-------------------------------------------------------------------------------
+
+# executables
 which bpython3 > /dev/null
 if [ $? -eq 0 ]; then
     alias p3=$(which bpython3)
 else
     alias p3=$(which python3)
 fi
+alias py='python'
+alias bp='bpython'
+
+# startup
 export PYTHONSTARTUP="$HOME/.pythonstartup"
+
+# create virtual environments
+alias ve='pyvenv'
+
+# activate virtual environment
+function va() {
+    source "$1"/bin/activate
+}
+
+# deactivate virtual environment
+alias vd='deactivate'
+
+# create and activate virtual environment
+function vea() {
+    ve "$1" && source "$1"/bin/activate
+}
+
+# create and activate virtual environment and install/upgrade some modules
+function veap() {
+    ve "$1" && source "$1"/bin/activate && cd "$1" && pip install --upgrade pip && pip install bpython
+}
+
+# "clone" virtual environment
+function vcl() {
+    va "$1" && pip freeze > "$1"/freeze.txt && deactivate && vea "$2" && pip install -r "$1"/freeze.txt && deactivate
+}
 
 #-------------------------------------------------------------------------------
 # environment variables
