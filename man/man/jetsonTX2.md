@@ -6,13 +6,13 @@
 The following workflow was tested with Jetpack 3.1 on a 64-bit Ubuntu 16.04 LTS host and a Jetson TX2. Note that ==all files on the Jetson TX2 will be deleted== in this process.
 
 
-#### Prerequisites ####
+### Prerequisites ###
 
 * 64-bit Ubuntu PC ("host") *in addition* to the Jetson TX2
 * USB cable
 
 
-#### Install ####
+### Install ###
 
 The following steps must be performed using JetPack **on the host** and will flash the Jetson TX2 with a fresh system:
 
@@ -23,7 +23,7 @@ The following steps must be performed using JetPack **on the host** and will fla
 Afterwards, a fresh Ubuntu 16.04 with CUDA, cuDNN, TensorRT, etc. (Linux4Tegra) is installed on the Jetson TX2.
 
 
-#### Post-Install ####
+### Post-Install ###
 
 The following steps are performed **on the Jetson TX2**.
 
@@ -87,11 +87,13 @@ The following steps are performed **on the Jetson TX2**.
 
 ## Performance ##
 
-* set performance profile
+All following operations require root privileges.
+
+* set performance profile (also see http://www.jetsonhacks.com/2017/03/25/nvpmodel-nvidia-jetson-tx2-development-kit/)
 
         nvpmodel -p --verbose # lists all profiles
         nvpmodel -m 0 # set profile MAXN (unconstrained)
-        /home/nvidia/jetson_clocks.sh  # set all clock frequencies (CPU and GPU) to theur max values defined by the nvpmodel setting
+        /home/nvidia/jetson_clocks.sh  # set all clock frequencies (CPU and GPU) to their max values defined by the nvpmodel setting
 
 * set fan speed (range 0..255)
 
