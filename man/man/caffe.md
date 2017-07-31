@@ -46,12 +46,11 @@
             export PATH="$CAFFE_ROOT/distribute/bin:$PATH"
             export PYTHONPATH="$CAFFE_ROOT/distribute/python:$PYTHONPATH"
 
-	    # for nvcaffe
+            # for nvcaffe
             export LD_LIBRARY_PATH="/usr/local/cuda-8.0/targets/aarch64-linux/lib/stubs:$LD_LIBRARY_PATH"
         else
             unset CAFFE_ROOT
         fi
-
 
 
 ### Linux4Tegra 28.1 on NVIDIA Jetson TX2 ###
