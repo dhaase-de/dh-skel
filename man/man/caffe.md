@@ -34,8 +34,8 @@
         # compile and test
         make -j$CORE_COUNT all
         make -j$CORE_COUNT test
-        make -j$CORE_COUNT runtest
         make -j$CORE_COUNT distribute
+        make -j$CORE_COUNT runtest
         
 6. Update environment variables (put this into `setenv.sh`)
 
