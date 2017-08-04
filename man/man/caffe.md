@@ -73,7 +73,7 @@
         PYTHON_LIB := /usr/lib
         WITH_PYTHON_LAYER := 1
         INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial
-        LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/hdf5/serial
+        LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/aarch64-linux-gnu /usr/lib/aarch64-linux-gnu/hdf5/serial /usr/local/cuda-8.0/targets/aarch64-linux/lib/stubs
         BUILD_DIR := build
         DISTRIBUTE_DIR := distribute
         TEST_GPUID := 0
