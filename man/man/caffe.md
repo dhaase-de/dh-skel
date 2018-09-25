@@ -53,6 +53,42 @@
         fi
 
 
+### Ubuntu 16.04 LTS ###
+
+* install required packages:
+
+        sudo aptitude install libboost-all-dev libgflags-dev libgoogle-glog-dev libprotobuf-dev protobuf-compiler libatlas-base-dev  python3 python3-dev python3-numpy libhdf5-serial-dev liblmdb-dev libleveldb-dev libsnappy-dev python3-pip python3-skimage
+        sudo pip3 install protobuf
+
+* install OpenCV 3
+
+* `Makefile.config`:
+
+        USE_CUDNN := 1        
+        CUDA_DIR := /usr/local/cuda
+        CUDA_ARCH := -gencode arch=compute_20,code=sm_20 \
+                -gencode arch=compute_20,code=sm_21 \
+                -gencode arch=compute_30,code=sm_30 \
+                -gencode arch=compute_35,code=sm_35 \
+                -gencode arch=compute_50,code=sm_50 \
+                -gencode arch=compute_52,code=sm_52 \
+                -gencode arch=compute_60,code=sm_60 \
+                -gencode arch=compute_61,code=sm_61 \
+                -gencode arch=compute_61,code=compute_61
+        BLAS := atlas
+        OPENCV_VERSION := 3
+        PYTHON_LIBRARIES := boost_python-py35 python3.5m
+        PYTHON_INCLUDE := /usr/include/python3.5m /usr/lib/python3.5/dist-packages/numpy/core/include
+        PYTHON_LIB := /usr/lib
+        WITH_PYTHON_LAYER := 1
+        INCLUDE_DIRS := $(PYTHON_INCLUDE) $(OPENCV_INCLUDE) /usr/local/include /usr/include/hdf5/serial
+        LIBRARY_DIRS := $(PYTHON_LIB) $(OPENCV_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/hdf5/serial /usr/local/cuda-8.0/targets/x86_64-linux/lib/stubs
+        BUILD_DIR := build
+        DISTRIBUTE_DIR := distribute
+        TEST_GPUID := 0
+        Q ?= @
+        
+
 ### Linux4Tegra 28.1 on NVIDIA Jetson TX2 ###
 
 * CUDA, cuDNN, etc. are all pre-installed, no further action is neccessary

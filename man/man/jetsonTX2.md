@@ -85,6 +85,41 @@ The following steps are performed **on the Jetson TX2**.
     * add HDD
 
 
+### Setting up SSD+Swap ###
+
+Also see http://www.jetsonhacks.com/2017/03/31/install-samsung-ssd-nvidia-jetson-tx2/.
+
+1. Shutdown the Jetson TX2.
+2. Connect SSD to Jetson TX2 developer board via (7+15) 22 pin male to female SATA cable.
+3. Start the Jetson TX2, login as `root` via `sudo -i`.
+4. Check that disk was recognized and format it
+
+        fdisk -l # should show /dev/sda with the appropriate size
+        cfdisk   # create 2 partitions: /dev/sda1 as linux (82) and ~8.0GB /dev/sda2 swap (83)
+        mkfs.ext4 /dev/sda1
+        mkswap /dev/sda2
+
+5. Move `/home` to the new disk:
+
+        mkdir /home.new
+        mount /dev/sda1 /home.new
+        rsync -av /home/* /home.new 
+        diff -r -q /home /home.new  # make sure that the two are identical
+        umount /home.new
+        rmdir /home.new
+        echo "$(blkid | awk '/sda1/ { print $2 }' | sed 's/"//g') /home ext4 defaults,noatime,errors=remount-ro 0 0" >> /etc/fstab
+        echo "$(blkid | awk '/sda2/ { print $2 }' | sed 's/"//g') none swap sw 0 0" >> /etc/fstab
+        mv /home /home.old
+        mkdir /home
+        
+6. Reboot
+7. Check if everything worked
+
+        df -h
+        
+8. `/home.old` can now be deleted
+
+
 ## Performance ##
 
 All following operations require root privileges.
