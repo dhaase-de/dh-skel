@@ -275,6 +275,15 @@ alias spsall="svn propset svn:keywords 'Author Date Id Revision HeadURL'"
 # Git
 alias g="git"
 
+# Docker
+alias d="docker"
+alias drrit="docker run -i -t --rm"
+alias dip="docker image ls"
+alias dcp="docker container ls --all"
+function dcrmall() {
+    docker container rm $(docker ps -aq)
+}
+
 # other commands
 alias gputop="watch -n1 nvidia-smi"
 
