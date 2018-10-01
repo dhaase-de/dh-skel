@@ -349,6 +349,9 @@ function vcl() {
     va "$1" && pip freeze > "$1"/freeze.txt && deactivate && vea "$2" && pip install -r "$1"/freeze.txt && deactivate
 }
 
+# Jupyter
+alias jupyhere="jupyter notebook --notebook-dir=."
+
 #-------------------------------------------------------------------------------
 # environment variables
 #-------------------------------------------------------------------------------
