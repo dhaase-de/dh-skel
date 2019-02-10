@@ -277,9 +277,10 @@ alias g="git"
 
 # Docker
 alias d="docker"
+alias dil="docker image ls"
 alias drrit="docker run -i -t --rm"
-alias dip="docker image ls"
-alias dcp="docker container ls --all"
+alias dco="docker container"
+alias dcl="docker container ls --all"
 function dcrmall() {
     docker container rm $(docker ps -aq)
 }
