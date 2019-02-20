@@ -1,0 +1,2 @@
+# CTRL-S to save
+bind ^S savefile main
