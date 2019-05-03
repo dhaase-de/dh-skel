@@ -275,6 +275,16 @@ alias spsall="svn propset svn:keywords 'Author Date Id Revision HeadURL'"
 # Git
 alias g="git"
 
+# Docker
+alias d="docker"
+alias dil="docker image ls"
+alias drrit="docker run -i -t --rm"
+alias dco="docker container"
+alias dcl="docker container ls --all"
+function dcrmall() {
+    docker container rm $(docker ps -aq)
+}
+
 # other commands
 alias gputop="watch -n1 nvidia-smi"
 
@@ -339,6 +349,9 @@ function veap() {
 function vcl() {
     va "$1" && pip freeze > "$1"/freeze.txt && deactivate && vea "$2" && pip install -r "$1"/freeze.txt && deactivate
 }
+
+# Jupyter
+alias jupyhere="jupyter notebook --notebook-dir=."
 
 #-------------------------------------------------------------------------------
 # environment variables
