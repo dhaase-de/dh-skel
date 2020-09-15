@@ -22,14 +22,7 @@ if [ -e "$TARGET_FILENAME" ]; then
 fi
 
 # create target file
-echo '#!/usr/bin/python3
-
-# import 
-
-
-###
-#%% main
-###
+echo '#!/usr/bin/env python3
 
 
 def main():
