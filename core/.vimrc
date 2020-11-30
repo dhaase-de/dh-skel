@@ -31,11 +31,11 @@ set ignorecase
 " show information about the current command
 set showcmd
 
-" CTRL-m will run a make command
-map <c-m> :! make<cr>
-
 " allow mouse in normal, visual and insert mode
 set mouse=nvi
+
+" keep 10 lines below and above the cursor
+set scrolloff=10
 
 " color scheme
 colorscheme delek
