@@ -24,13 +24,27 @@ fi
 # create target file
 echo '#!/usr/bin/env python3
 
+import argparse
+import sys
+
+
+def get_args():
+    parser = argparse.ArgumentParser(description="")
+    #parser.add_argument(help="")
+    args = parser.parse_args()
+    return args
+
 
 def main():
-    pass
+    args = get_args()
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        print("ERROR: {} ({})".format(e, type(e).__name__))
+        sys.exit(1)
 ' > "$TARGET_FILENAME"
 echo "Successfully created target file "$TARGET_FILENAME"!"
 
