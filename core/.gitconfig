@@ -41,6 +41,7 @@ short = true
 
 [pager]
 branch = false
+tag = false
 
 [credential]
 helper = cache --timeout=86400
