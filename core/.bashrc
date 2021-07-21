@@ -288,6 +288,9 @@ function dirmnone() {
     # remove unnamed images
     docker image rm $(docker image ls | awk '{ if ($2 == "<none>") print $3 }')
 }
+function dcbash() {
+    docker container exec -it $* /bin/bash
+}
 
 # other commands
 alias gputop="watch -n1 nvidia-smi"
