@@ -284,6 +284,10 @@ alias dcl="docker container ls --all"
 function dcrmall() {
     docker container rm $(docker ps -aq)
 }
+function dirmnone() {
+    # remove unnamed images
+    docker image rm $(docker image ls | awk '{ if ($2 == "<none>") print $3 }')
+}
 
 # other commands
 alias gputop="watch -n1 nvidia-smi"
