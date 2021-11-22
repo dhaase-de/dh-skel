@@ -279,16 +279,19 @@ alias g="git"
 alias d="docker"
 alias dil="docker image ls"
 alias drrit="docker run -i -t --rm"
+alias dirm="docker image rm"
 alias dco="docker container"
 alias dcl="docker container ls --all"
 function dcrmall() {
+    # remove all containers
     docker container rm $(docker ps -aq)
 }
-function dirmnone() {
+function drmnoname() {
     # remove unnamed images
     docker image rm $(docker image ls | awk '{ if ($2 == "<none>") print $3 }')
 }
 function dcbash() {
+    # start interactive bash in container
     docker container exec -it $* /bin/bash
 }
 
