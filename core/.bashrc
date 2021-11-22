@@ -294,6 +294,14 @@ function dcbash() {
     # start interactive bash in container
     docker container exec -it $* /bin/bash
 }
+function dtgz() {
+    # save image as local tar.gz file
+    FILENAME_OUT="$(echo "$1" | sed 's#[/:]#_#g').tar.gz"
+    echo "Saving docker image to '$FILENAME_OUT'..."
+    docker save "$1" | gzip > "$FILENAME_OUT"
+    echo "Done ($(du -h "$FILENAME_OUT" | cut -f1))"
+}
+
 
 # other commands
 alias gputop="watch -n1 nvidia-smi"
