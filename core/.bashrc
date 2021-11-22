@@ -299,7 +299,7 @@ function dtgz() {
     FILENAME_OUT="$(echo "$1" | sed 's#[/:]#_#g').tar.gz"
     echo "Saving docker image to '$FILENAME_OUT'..."
     docker save "$1" | gzip > "$FILENAME_OUT"
-    echo "Done ($(du -h "$FILENAME_OUT" | cut -f1))"
+    echo "Done ($(du -h "$FILENAME_OUT" | cut -f1), $(md5sum "$FILENAME_OUT" | awk '{ print $1 }'))"
 }
 
 
