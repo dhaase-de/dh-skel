@@ -312,8 +312,8 @@ alias dc="cd"
 alias whoch='which'
 
 # root
-alias aps="aptitude search"
-alias api="aptitude install"
+alias aps="apt search"
+alias api="apt install"
 alias asi='eval "$(history | sed "s/^\s*[0-9]\+\s\+//" | grep "^aps \([-a-zA-Z0-9]\+\s*\)*$" | tail -n1 | sed "s/^aps /api /")"'
 
 #-------------------------------------------------------------------------------
