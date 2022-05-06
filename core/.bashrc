@@ -296,10 +296,13 @@ function dcbash() {
 }
 function dtgz() {
     # save image as local tar.gz file
-    FILENAME_OUT="$(echo "$1" | sed 's#[/:]#_#g').tar.gz"
+    FILENAME_OUT="$(echo "$1" | sed 's#[/:]#_#g').tar.gz.part"
     echo "Saving docker image to '$FILENAME_OUT'..."
-    docker save "$1" | gzip > "$FILENAME_OUT"
-    echo "Done ($(du -h "$FILENAME_OUT" | cut -f1), $(md5sum "$FILENAME_OUT" | awk '{ print $1 }'))"
+    docker save "$1" | gzip | split --bytes=1G --unbuffered --numeric-suffixes - "$FILENAME_OUT"
+    echo "Done. Files:"
+    for FILENAME in "$FILENAME_OUT"*; do
+        echo "$FILENAME  $(du -h "$FILENAME" | cut -f1)  $(md5sum "$FILENAME" | awk '{ print $1 }')"
+    done
 }
 
 
