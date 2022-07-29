@@ -182,6 +182,7 @@ alias lt="l -t | head"
 alias lS="l -S | head"
 alias L="l -A"
 alias Lg="L | grp"
+alias dusl="du -sch * | sort -h -r | less"
 
 # change and ls dir
 function cl() {
