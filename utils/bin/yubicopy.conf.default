@@ -1,0 +1,4 @@
+[__default__]
+device=12345678
+issuer=my_issuer
+name=my_name
