@@ -279,6 +279,7 @@ alias g="git"
 # Docker
 alias d="docker"
 alias dil="docker image ls"
+alias diln="docker image ls | head -n 1 && docker image ls | tail -n +2 | sort"  # sorted by name
 alias drrit="docker run -i -t --rm"
 alias dirm="docker image rm"
 alias dco="docker container"
@@ -305,7 +306,6 @@ function dtgz() {
         echo "$FILENAME  $(du -h "$FILENAME" | cut -f1)  $(md5sum "$FILENAME" | awk '{ print $1 }')"
     done
 }
-
 
 # other commands
 alias gputop="watch -n1 nvidia-smi"
