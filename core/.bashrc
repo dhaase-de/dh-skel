@@ -140,12 +140,6 @@ else
     COLOR_HOST=$COLOR_OFF
 fi
 
-if [ -n "$WITHIN_SCREEN" ]; then
-    WITHIN_SCREEN_TEXT="\[$COLOR_YELLOW\](#screen)\[$COLOR_OFF\]"
-else
-    WITHIN_SCREEN_TEXT=""
-fi
-
 # commands to be executed before showing a new prompt
 case "$-" in
     # (use birthday script only for interactive shells, otherwise there will be problems with rsync)
@@ -154,7 +148,7 @@ case "$-" in
 esac
 
 # prompt style
-PS1="\u@\[$COLOR_HOST\]\h\[$COLOR_OFF\]$WITHIN_SCREEN_TEXT:\[$COLOR_PROMPT\]\w\[$COLOR_OFF\](\$(/bin/ls -1F | grep -e '/$' | wc -l)+\$(/bin/ls -1F | grep -e '[^/]$' | wc -l)),\$(echo \$LASTEXIT | sed -e 's/\(^[0-9]*[1-9][0-9]*$\)/\[$COLOR_RED\]\\1\[$COLOR_OFF\]/g')\$ "
+PS1="\u@\[$COLOR_HOST\]\h\[$COLOR_OFF\]:\[$COLOR_PROMPT\]\w\[$COLOR_OFF\](\$(/bin/ls -1F | grep -e '/$' | wc -l)+\$(/bin/ls -1F | grep -e '[^/]$' | wc -l)),\$(echo \$LASTEXIT | sed -e 's/\(^[0-9]*[1-9][0-9]*$\)/\[$COLOR_RED\]\\1\[$COLOR_OFF\]/g')\$ "
 PS2="+ "
 
 #-------------------------------------------------------------------------------
@@ -182,7 +176,6 @@ alias lt="l -t | head"
 alias lS="l -S | head"
 alias L="l -A"
 alias Lg="L | grp"
-alias dusl="du -sch * | sort -h -r | less"
 
 # change and ls dir
 function cl() {
@@ -205,15 +198,14 @@ alias grp="grep --color=auto --ignore-case --with-filename --line-number"
 # less (show current postion in file and case insensitive search)
 export LESS="-M -i" 
 
+# file sizes
+alias dusch="du -sch"
+alias dusl="du -sch * | sort -h -r | less"
+
 # editor
 export PAGER="less"
 export EDITOR="vim"
 alias v="vim"
-
-# emacs: open new window if one does not exist already (source http://superuser.com/a/425950)
-function e {
-    gedit --background --new-document "$@"
-}
 
 # show readme file
 function lr() {
@@ -224,54 +216,6 @@ function lr() {
       fi
    done
 }
-
-# multimedia
-if which okular &> /dev/null; then
-   export PDFVIEWER=`which okular`
-else
-   if which evince &> /dev/null; then
-      export PDFVIEWER=`which evince`
-   fi
-fi
-alias ok="$PDFVIEWER"
-alias om="ok main.pdf"
-alias di="display"
-alias m="mplayer"
-alias ml="mplayer -fs -loop 0"
-alias m3="mplayer *.mp3"
-alias vid2png="mplayer -vo png:z=9"
-alias vid2pgm="mplayer -vo pnm:pgm"
-alias vid2jpg="mplayer -vo jpeg"
-function img2vid() {
-   if [ -z $2 ]; then
-      OUTFILE=video.mp4
-   else
-      OUTFILE=$2
-   fi
-   avconv -framerate 24 -f image2 -i "%04d.$1" "$OUTFILE"
-}
-alias png2vid="img2vid png"
-alias jpg2vid="img2vid jpg"
-alias jpeg2vid="img2vid jpeg"
-function vid2png2() {
-   ffmpeg -an -i "$1" -f image2 %08d.png
-}
-
-# SVN
-function sdl() {
-   svn --no-diff-deleted diff $* | less
-}
-function sds() {
-   svn --no-diff-deleted diff $* | grep "^[^ ]" | less
-}
-function ssc() {
-   svn status $* | "grep" "^[^\?]"
-}
-function sst() {
-   svn status $*
-}
-alias spsid="svn propset svn:keywords Id"
-alias spsall="svn propset svn:keywords 'Author Date Id Revision HeadURL'"
 
 # Git
 alias g="git"
@@ -315,10 +259,9 @@ alias mkdit="mkdir"
 alias dc="cd"
 alias whoch='which'
 
-# root
+# apt aliases
 alias aps="apt search"
 alias api="apt install"
-alias asi='eval "$(history | sed "s/^\s*[0-9]\+\s\+//" | grep "^aps \([-a-zA-Z0-9]\+\s*\)*$" | tail -n1 | sed "s/^aps /api /")"'
 
 #-------------------------------------------------------------------------------
 # programming languages
@@ -347,7 +290,7 @@ alias bp='bpython'
 export PYTHONSTARTUP="$HOME/.pythonstartup"
 
 # create virtual environments
-alias ve='pyvenv'
+alias ve="python3 -m virtualenv"
 
 # activate virtual environment
 function va() {
@@ -374,24 +317,6 @@ function vcl() {
 
 # Jupyter
 alias jupyhere="jupyter notebook --notebook-dir=."
-
-#-------------------------------------------------------------------------------
-# environment variables
-#-------------------------------------------------------------------------------
-
-
-
-#-------------------------------------------------------------------------------
-# welcome message
-#-------------------------------------------------------------------------------
-
-if [ -f "$DH_GIT_BASE/dh-skel/core/.bashrc" ]; then
-    # (only for interactive shells, otherwise there will be problems with rsync)
-    case "$-" in
-        *i*) echo ">>> dh-skel/core/.bashrc, $(cd "$DH_GIT_BASE/dh-skel/" && git log --pretty=format:'%h, %ar' -n 1 ./core/.bashrc). Have fun! <<<";;
-        *)   ;;
-    esac
-fi
 
 #-------------------------------------------------------------------------------
 # source local '.bashrc' if it exists
