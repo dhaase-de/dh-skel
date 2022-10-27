@@ -202,6 +202,16 @@ export LESS="-M -i"
 alias dusch="du -sch"
 alias dusl="du -sch * | sort -h -r | less"
 
+# tmux - attach session if it exists, otherwise create new session
+function tx() {
+    tmux has-session &> /dev/null
+    if [[ $? -eq 0 ]]; then
+        tmux attach-session
+    else
+        tmux
+    fi
+}
+
 # editor
 export PAGER="less"
 export EDITOR="vim"
