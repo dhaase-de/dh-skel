@@ -2,19 +2,29 @@
 name = Daniel Haase
 email = git@dhaase.de
 
+[credential]
+helper = cache --timeout=2678400
+
 [alias]
 an = annex
 br = branch
 cm = checkout main
 co = checkout
-de = describe --tags
+dt = describe --tags
 di = diff
 dc = diff --cached
-lo = log --graph
+lg = log --graph
 st = status
+
+[init]
+defaultBranch = main
 
 [core]
 pager = less -R
+
+[pager]
+branch = false
+tag = false
 
 [color]
 branch = auto
@@ -26,9 +36,6 @@ status = auto
 [format]
 pretty = %ai (%an)  [%Cgreen%h%Creset]%Cred%d%Creset  %s
 
-[help]
-autocorrect = 0
-
 [push]
 default = simple
 
@@ -39,9 +46,5 @@ stat = true
 branch = true
 short = true
 
-[pager]
-branch = false
-tag = false
-
-[credential]
-helper = cache --timeout=2678400
+[help]
+autocorrect = 0
