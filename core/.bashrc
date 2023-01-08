@@ -299,31 +299,19 @@ alias bp='bpython'
 # startup
 export PYTHONSTARTUP="$HOME/.pythonstartup"
 
-# create virtual environments
-alias ve="python3 -m virtualenv"
+# create and activate virtual environment
+function vvc() {
+    python3 -m venv "${1:-venv}"
+    source "${1:-venv}"/bin/activate
+}
 
 # activate virtual environment
-function va() {
-    source "$1"/bin/activate
+function vva() {
+    source "${1:-venv}"/bin/activate
 }
 
 # deactivate virtual environment
-alias vd='deactivate'
-
-# create and activate virtual environment
-function vea() {
-    ve "$1" && source "$1"/bin/activate
-}
-
-# create and activate virtual environment and install/upgrade some modules
-function veap() {
-    ve "$1" && source "$1"/bin/activate && cd "$1" && pip install --upgrade pip && pip install bpython
-}
-
-# "clone" virtual environment
-function vcl() {
-    va "$1" && pip freeze > "$1"/freeze.txt && deactivate && vea "$2" && pip install -r "$1"/freeze.txt && deactivate
-}
+alias vvd="deactivate"
 
 # Jupyter
 alias jupyhere="jupyter notebook --notebook-dir=."
