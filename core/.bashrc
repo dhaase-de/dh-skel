@@ -161,6 +161,7 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
+alias c="cd $HOME/code"
 
 # directory listings
 ls --group-directories-first /dev/null &> /dev/null
