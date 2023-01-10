@@ -26,4 +26,4 @@ cd "$FULL_PATH" && cd ..
 BASENAME="$(basename "$FULL_PATH")"
 BASENAME="$(echo $BASENAME | sed 's,/$,,')"
 
-cd "$FULL_PATH" && cd .. && zip -r "$BASENAME.zip" "$BASENAME/"
+cd "$FULL_PATH" && cd .. && zip --recurse-paths --move "$BASENAME.zip" "$BASENAME/"
