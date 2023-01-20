@@ -215,7 +215,7 @@ function tx() {
 
 # tmuxinator
 function mx() {
-    tmuxinator start ${1:-default_local}
+    tmuxinator start ${1:-mylocal}
 }
 
 # editor
