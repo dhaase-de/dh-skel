@@ -213,6 +213,11 @@ function tx() {
     fi
 }
 
+# tmuxinator
+function mx() {
+    tmuxinator start ${1:-mylocal}
+}
+
 # editor
 export PAGER="less"
 export EDITOR="vim"
