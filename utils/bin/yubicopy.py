@@ -28,7 +28,9 @@ def main():
         issuer=config[args.entry_name]["issuer"],
         name=config[args.entry_name]["name"],
     )
+    print(call_str.split(" | ")[0])
     os.system(call_str)
+    print("Done")
 
 
 if __name__ == "__main__":
