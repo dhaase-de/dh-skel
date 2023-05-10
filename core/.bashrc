@@ -196,6 +196,16 @@ function mkcd() {
 # grep
 alias grp="grep --color=auto --ignore-case --with-filename --line-number"
 
+# grep in files matching a certain pattern
+function fang() {
+    # fang: *f*ind *an*d *g*rep
+    if [[ $# -ne 2 ]]; then
+        echo "Usage: fang <grep_pattern> <file_extension>"
+    else
+        find . -name "*.$2" -exec grep --with-filename --line-number --ignore-case "$1" {} \; | sort
+    fi
+}
+
 # less (show current postion in file and case insensitive search)
 export LESS="-M -i" 
 
