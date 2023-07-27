@@ -17,6 +17,15 @@ shopt -s dirspell
 # append history instead of overwriting
 shopt -s histappend
 
+# eternal bash history (see https://stackoverflow.com/a/19533853/1913780)
+export HISTFILESIZE=
+export HISTSIZE=
+export HISTTIMEFORMAT="[%F %T]  "
+export HISTFILE=$HOME/.bash_eternal_history
+
+# append to bash history immediately after each command
+PROMPT_COMMAND="history -a"
+
 # do not close terminal automatically (but only set it for interactive shells)
 case "$-" in
     *i*) export TMOUT=0;;
@@ -142,10 +151,11 @@ fi
 
 # commands to be executed before showing a new prompt
 case "$-" in
-    # (use birthday script only for interactive shells, otherwise there will be problems with rsync)
-    *i*) PROMPT_COMMAND="LASTEXIT=\$?";;
-    *)   PROMPT_COMMAND="";;
+    # (use return value indicator only for interactive shells, otherwise there will be problems with rsync)
+    *i*) PROMPT_COMMAND="$PROMPT_COMMAND; LASTEXIT=\$?";;
+    *)   PROMPT_COMMAND="$PROMPT_COMMAND";;
 esac
+
 
 # prompt style
 PS1="\u@\[$COLOR_HOST\]\h\[$COLOR_OFF\]:\[$COLOR_PROMPT\]\w\[$COLOR_OFF\](\$(/bin/ls -1F | grep -e '/$' | wc -l)+\$(/bin/ls -1F | grep -e '[^/]$' | wc -l)),\$(echo \$LASTEXIT | sed -e 's/\(^[0-9]*[1-9][0-9]*$\)/\[$COLOR_RED\]\\1\[$COLOR_OFF\]/g')\$ "
