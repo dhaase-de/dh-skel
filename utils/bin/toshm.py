@@ -5,6 +5,8 @@ import pathlib
 import shutil
 import sys
 
+import tqdm
+
 
 def bytes_to_human_str(b: int) -> str:
     prefixes = ["", "k", "M", "G", "T"]
@@ -33,31 +35,36 @@ def main(args):
     if not target_base_path.exists():
         raise FileNotFoundError(f"Target base path '{target_base_path}' does not exist")
 
-    print(f"Scanning for files...")
+    print(f"Scanning for files to copy...")
     paths_to_copy = []
-    for source_path in source_paths:
-        if source_path.is_file():
-            paths_to_copy.append(source_path)
-        else:
-            for path in source_path.glob("**/*"):
-                if path.is_file():
-                    paths_to_copy.append(path)
+    with tqdm.tqdm(leave=True, unit=" files") as scan_pbar:
+        for source_path in source_paths:
+            if source_path.is_file():
+                paths_to_copy.append(source_path)
+                scan_pbar.update(1)
+            else:
+                for path in source_path.glob("**/*"):
+                    if path.is_file():
+                        paths_to_copy.append(path)
+                        scan_pbar.update(1)
     size_to_copy = sum(path.stat().st_size for path in paths_to_copy)
     print(f"Found {len(paths_to_copy)} file(s) ({bytes_to_human_str(size_to_copy)}) to copy")
 
     print("Copying files...")
     size_copied = 0
-    for (n_path, path) in enumerate(paths_to_copy):
-        source_path = path.absolute()
-        source_filename = str(source_path)
-        assert source_filename.startswith("/")
+    with tqdm.tqdm(total=size_to_copy, leave=True, unit="B", unit_scale=True, unit_divisor=1024) as copy_pbar:
+        for (n_path, path) in enumerate(paths_to_copy):
+            source_path = path.absolute()
+            source_filename = str(source_path)
+            assert source_filename.startswith("/")
        
-        target_path = target_base_path.joinpath(source_filename[1:])
-        target_path.parent.mkdir(parents=True, exist_ok=True)
+            target_path = target_base_path.joinpath(source_filename[1:])
+            target_path.parent.mkdir(parents=True, exist_ok=True)
 
-        shutil.copy2(source_path, target_path)
-        size_copied += source_path.stat().st_size
-        print(f"[{n_path + 1}/{len(paths_to_copy)}]  [{bytes_to_human_str(size_copied)} / {bytes_to_human_str(size_to_copy)}]  {target_path}")
+            shutil.copy2(source_path, target_path)
+            size_copied = source_path.stat().st_size
+            copy_pbar.update(size_copied)
+            #print(f"[{n_path + 1}/{len(paths_to_copy)}]  [{bytes_to_human_str(size_copied)} / {bytes_to_human_str(size_to_copy)}]  {target_path}")
 
 
 if __name__ == "__main__":
