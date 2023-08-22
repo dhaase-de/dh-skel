@@ -287,6 +287,12 @@ function dtgz() {
     done
 }
 
+# rhash
+alias rha="rhash --sha1 --percents --output=rhash.txt --recursive *"
+function rhc() {
+    rhash --check ${1:-rhash.txt}
+}
+
 # other commands
 alias gputop="watch -n1 nvidia-smi"
 
