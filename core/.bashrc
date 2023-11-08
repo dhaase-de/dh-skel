@@ -171,7 +171,6 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ......="cd ../../../../.."
-alias c="cd $HOME/code"
 
 # directory listings
 ls --group-directories-first /dev/null &> /dev/null
@@ -354,4 +353,25 @@ alias jupyhere="jupyter notebook --notebook-dir=."
 
 if [ -f $HOME/.bashrc.local ]; then
     source $HOME/.bashrc.local
+fi
+
+#-------------------------------------------------------------------------------
+# source zoxide definitions if they exist and zoxide is installed
+#-------------------------------------------------------------------------------
+
+# only do something if zoxide is installed and the file $HOME/.bashrc.zoxide exists
+which zoxide > /dev/null
+if [ $? -eq 0 ]; then
+    if [ -f $HOME/.bashrc.zoxide ]; then
+        # source zoxide definitions generated via 'zoxide init bash --cmd=c > .bashrc.zoxide'
+        # this creates the 'c' and 'ci' commands (zoxide defaults are 'z' and 'zi')
+        source $HOME/.bashrc.zoxide
+        
+        # redefine aliases (see above)
+        alias ..="c .."
+        alias ...="c ../.."
+        alias ....="c ../../.."
+        alias .....="c ../../../.."
+        alias ......="c ../../../../.."
+    fi
 fi
