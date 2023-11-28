@@ -344,6 +344,9 @@ function vva() {
 # deactivate virtual environment
 alias vvd="deactivate"
 
+# activate virtual environment 'dh'
+alias vdh="source $HOME/venvs/dh/bin/activate"
+
 # Jupyter
 alias jupyhere="jupyter notebook --notebook-dir=."
 
