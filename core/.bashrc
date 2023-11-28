@@ -359,10 +359,16 @@ fi
 # source zoxide definitions if they exist and zoxide is installed
 #-------------------------------------------------------------------------------
 
+# if zoxide is not available, just use cd
+alias c="cd"
+
 # only do something if zoxide is installed and the file $HOME/.bashrc.zoxide exists
 which zoxide > /dev/null
 if [ $? -eq 0 ]; then
     if [ -f $HOME/.bashrc.zoxide ]; then
+        # remove the fallback alias to cd
+        unalias c
+
         # source zoxide definitions generated via 'zoxide init bash --cmd=c > .bashrc.zoxide'
         # this creates the 'c' and 'ci' commands (zoxide defaults are 'z' and 'zi')
         source $HOME/.bashrc.zoxide
