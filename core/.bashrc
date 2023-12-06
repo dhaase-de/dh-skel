@@ -287,7 +287,7 @@ function dtgz() {
 }
 
 # rhash
-alias rha="rhash --sha1 --percents --output=rhash.txt --recursive *"
+alias rha="rhash --sha1 --percents --output=rhash.txt --recursive --follow *"
 function rhc() {
     rhash --check ${1:-rhash.txt}
 }
