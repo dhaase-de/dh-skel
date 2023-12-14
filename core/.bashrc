@@ -165,13 +165,6 @@ PS2="+ "
 # aliases, functions, variables etc.
 #-------------------------------------------------------------------------------
 
-# navigation
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ......="cd ../../../../.."
-
 # directory listings
 ls --group-directories-first /dev/null &> /dev/null
 if [ $? -eq 0 ]; then
@@ -365,6 +358,14 @@ fi
 # if zoxide is not available, just use cd
 alias c="cd"
 
+# cd aliases
+alias cc="c $HOME/code"
+alias ..="c .."
+alias ...="c ../.."
+alias ....="c ../../.."
+alias .....="c ../../../.."
+alias ......="c ../../../../.."
+
 # only do something if zoxide is installed and the file $HOME/.bashrc.zoxide exists
 which zoxide > /dev/null
 if [ $? -eq 0 ]; then
@@ -375,12 +376,5 @@ if [ $? -eq 0 ]; then
         # source zoxide definitions generated via 'zoxide init bash --cmd=c > .bashrc.zoxide'
         # this creates the 'c' and 'ci' commands (zoxide defaults are 'z' and 'zi')
         source $HOME/.bashrc.zoxide
-        
-        # redefine aliases (see above)
-        alias ..="c .."
-        alias ...="c ../.."
-        alias ....="c ../../.."
-        alias .....="c ../../../.."
-        alias ......="c ../../../../.."
     fi
 fi
