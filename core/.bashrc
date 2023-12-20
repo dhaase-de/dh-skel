@@ -199,6 +199,7 @@ function mkcd() {
 alias grp="grep --color=auto --ignore-case --with-filename --line-number"
 
 # grep in files matching a certain pattern
+# update: consider using ripgrep (rg) instead
 function fang() {
     # fang: *f*ind *an*d *g*rep
     if [[ $# -ne 2 ]]; then
