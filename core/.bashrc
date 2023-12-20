@@ -216,6 +216,9 @@ export LESS="-M -i"
 alias dusch="du -sch"
 alias dusl="du -sch * | sort -h -r | less"
 
+# current date string
+alias nowstr="date '+%Y-%m-%d__%H-%M-%S'"
+
 # tmux - attach session if it exists, otherwise create new session
 function tx() {
     tmux has-session &> /dev/null
