@@ -187,7 +187,7 @@ function cl() {
 
 # mkdir, cp, mv, rm
 alias cp="cp -riv"
-alias rs="rsync --progress"
+alias rs="rsync --archive --verbose --progress"
 alias mv="mv -iv"
 alias rm="rm -vI"
 alias mkdir="mkdir -p"
