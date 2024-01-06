@@ -348,7 +348,7 @@ alias vdh="source $HOME/venvs/dh/bin/activate"
 
 # pip installation of wheels from local files (needed if machine has no internet access)
 function pinf() {
-    pip install --no-index -find-links="$(dirname "$1")" $*
+    pip install --no-index --find-links="$(dirname "$1")" $*
 }
 
 # Jupyter
