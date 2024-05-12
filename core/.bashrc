@@ -284,6 +284,8 @@ function dtgz() {
     echo "Done. Files:"
     echo "$FILENAME_OUT  $(du -h "$FILENAME_OUT" | cut -f1)  $(sha1sum "$FILENAME_OUT" | awk '{ print $1 }')"
 }
+alias dcom="docker compose"
+alias dcup="docker compose up -d"
 
 # rhash
 alias rha="rhash --sha1 --percents --output=rhash.txt --recursive --follow *"
