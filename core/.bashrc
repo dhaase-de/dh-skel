@@ -257,6 +257,7 @@ alias d="docker"
 alias dil="docker image ls"
 alias diln="docker image ls | head -n 1 && docker image ls | tail -n +2 | sort"  # sorted by name
 alias drrit="docker run -i -t --rm"
+alias drrib="docker run -i -t --rm --entrypoint=/bin/bash"
 alias dirm="docker image rm"
 alias dco="docker container"
 alias dcl="docker container ls --all"
