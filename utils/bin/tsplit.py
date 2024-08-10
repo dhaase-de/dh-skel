@@ -10,9 +10,9 @@ def get_args():
     parser = argparse.ArgumentParser(description="")
     parser.add_argument("text", nargs="?", help="Text to split. If not specified, will be read interactively.")
     parser.add_argument("-c", "--characters-per-chunk", default=4, type=int, help="Number of characters per chunk.")
-    parser.add_argument("-x", "--hide-input", action="store_true", help="If set, hide text when reading it interactively.")
+    parser.add_argument("-i", "--show-input", action="store_true", help="If set, do not hide the entered text when reading it interactively.")
     parser.add_argument("-l", "--chunks-per-line", default=4, type=int, help="Number of chunks per line.")
-    parser.add_argument("-s", "--chunk-sep", default=" - ", type=str, help="Separator between chunks.")
+    parser.add_argument("-s", "--chunk-sep", default=" ", type=str, help="Separator between chunks.")
     args = parser.parse_args()
     return args 
 
@@ -37,10 +37,10 @@ def main():
     text = args.text
     if text is None:
         prompt = "Enter text to split: "
-        if args.hide_input:
-            text = getpass.getpass(prompt)
-        else:
+        if args.show_input:
             text = input(prompt)
+        else:
+            text = getpass.getpass(prompt)
     if len(text) == 0:
         print("Warning: text is empty, stopped")
         sys.exit(1)
