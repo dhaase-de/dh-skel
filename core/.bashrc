@@ -251,6 +251,7 @@ function lr() {
 
 # Git
 alias g="git"
+alias g.="git status ."
 
 # Docker
 alias d="docker"
