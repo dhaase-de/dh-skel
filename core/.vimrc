@@ -38,4 +38,5 @@ set mouse=nvi
 set scrolloff=10
 
 " color scheme
-colorscheme delek
+syntax on
+colorscheme evening 
