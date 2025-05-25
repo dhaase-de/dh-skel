@@ -238,6 +238,7 @@ function mx() {
 export PAGER="less"
 export EDITOR="vim"
 alias v="vim"
+alias vbrc="vim $HOME/.bashrc"
 
 # show readme file
 function lr() {
