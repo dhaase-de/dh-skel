@@ -165,6 +165,17 @@ PS2="+ "
 # aliases, functions, variables etc.
 #-------------------------------------------------------------------------------
 
+# allow aliases when using sudo (see https://askubuntu.com/a/22043)
+alias sudo="sudo "
+
+# apt aliases
+alias apu="apt update"
+alias aps="apt search"
+alias api="apt install"
+
+# standard packages needed after a fresh system install
+alias aptskel="apt install duf git mc rhash ripgrep tmux vim zoxide"
+
 # directory listings
 ls --group-directories-first /dev/null &> /dev/null
 if [ $? -eq 0 ]; then
@@ -254,6 +265,8 @@ function lr() {
 alias g="git"
 alias gg="git status"
 alias g.="git status ."
+alias gd="git diff"
+alias gd.="git diff ."
 
 # Docker
 alias d="docker"
@@ -305,11 +318,7 @@ alias gputop="watch -n1 nvidia-smi"
 # common typos
 alias mkdit="mkdir"
 alias dc="cd"
-alias whoch='which'
-
-# apt aliases
-alias aps="apt search"
-alias api="apt install"
+alias whoch="which"
 
 #-------------------------------------------------------------------------------
 # programming languages
