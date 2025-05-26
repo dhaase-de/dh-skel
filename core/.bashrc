@@ -263,7 +263,7 @@ alias drrit="docker run -i -t --rm"
 alias drrib="docker run -i -t --rm --entrypoint=/bin/bash"
 alias dirm="docker image rm"
 alias dco="docker container"
-alias dcl="docker container ls --all"
+alias dcl="docker container ls --all | less -S"
 function dcrmall() {
     # remove all containers
     docker container rm $(docker ps -aq)
@@ -290,6 +290,7 @@ function dtgz() {
 }
 alias dcom="docker compose"
 alias dcup="docker compose up -d"
+alias dcdo="docker compose down"
 
 # rhash
 alias rha="rhash --sha1 --percents --output=rhash.txt --recursive --follow *"
