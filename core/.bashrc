@@ -174,7 +174,7 @@ alias aps="apt search"
 alias api="apt install"
 
 # standard packages needed after a fresh system install
-alias aptskel="apt install duf git mc rhash ripgrep tmux vim zoxide"
+alias aptskel="apt install duf git mc renameutils rhash ripgrep tmux vim zoxide"
 
 # directory listings
 ls --group-directories-first /dev/null &> /dev/null
