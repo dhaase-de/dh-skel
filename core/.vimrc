@@ -40,3 +40,11 @@ set scrolloff=10
 " color scheme
 syntax on
 colorscheme evening 
+
+"
+" custom commands
+"
+
+" toggle paste mode
+nnoremap <F5> :set paste! \| echo 'Paste mode: ' . (&paste ? 'ON' : 'OFF')<CR>
+inoremap <F5> <Esc>:set paste! \| echo 'Paste mode: ' . (&paste ? 'ON' : 'OFF')<CR>i
