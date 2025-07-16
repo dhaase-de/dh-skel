@@ -291,7 +291,7 @@ function dcbash() {
 }
 function dtgz() {
     # save image as local tar.gz file
-    FILENAME_OUT="$(echo "$1" | sed 's#[/:]#_#g').tar.gz"
+    FILENAME_OUT="$(echo "$1" | sed 's#[/:]#__#g').tar.gz"
     if [[ -e "$FILENAME_OUT" ]]; then
         echo "Target file '$FILENAME_OUT' exists already, aborted"
         exit 1
