@@ -165,6 +165,17 @@ PS2="+ "
 # aliases, functions, variables etc.
 #-------------------------------------------------------------------------------
 
+# allow aliases when using sudo (see https://askubuntu.com/a/22043)
+alias sudo="sudo "
+
+# apt aliases
+alias apu="apt update"
+alias aps="apt search"
+alias api="apt install"
+
+# standard packages needed after a fresh system install
+alias aptskel="apt install duf git mc renameutils rhash ripgrep tmux vim zoxide"
+
 # directory listings
 ls --group-directories-first /dev/null &> /dev/null
 if [ $? -eq 0 ]; then
@@ -238,6 +249,7 @@ function mx() {
 export PAGER="less"
 export EDITOR="vim"
 alias v="vim"
+alias vbrc="vim $HOME/.bashrc"
 
 # show readme file
 function lr() {
@@ -251,7 +263,10 @@ function lr() {
 
 # Git
 alias g="git"
+alias gg="git status"
 alias g.="git status ."
+alias gd="git diff"
+alias gd.="git diff ."
 
 # Docker
 alias d="docker"
@@ -261,7 +276,7 @@ alias drrit="docker run -i -t --rm"
 alias drrib="docker run -i -t --rm --entrypoint=/bin/bash"
 alias dirm="docker image rm"
 alias dco="docker container"
-alias dcl="docker container ls --all"
+alias dcl="docker container ls --all | less -S"
 function dcrmall() {
     # remove all containers
     docker container rm $(docker ps -aq)
@@ -276,7 +291,7 @@ function dcbash() {
 }
 function dtgz() {
     # save image as local tar.gz file
-    FILENAME_OUT="$(echo "$1" | sed 's#[/:]#_#g').tar.gz"
+    FILENAME_OUT="$(echo "$1" | sed 's#[/:]#__#g').tar.gz"
     if [[ -e "$FILENAME_OUT" ]]; then
         echo "Target file '$FILENAME_OUT' exists already, aborted"
         exit 1
@@ -288,6 +303,7 @@ function dtgz() {
 }
 alias dcom="docker compose"
 alias dcup="docker compose up -d"
+alias dcdo="docker compose down"
 
 # rhash
 alias rha="rhash --sha1 --percents --output=rhash.txt --recursive --follow *"
@@ -302,11 +318,7 @@ alias gputop="watch -n1 nvidia-smi"
 # common typos
 alias mkdit="mkdir"
 alias dc="cd"
-alias whoch='which'
-
-# apt aliases
-alias aps="apt search"
-alias api="apt install"
+alias whoch="which"
 
 #-------------------------------------------------------------------------------
 # programming languages
