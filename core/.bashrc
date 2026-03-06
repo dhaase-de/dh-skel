@@ -334,7 +334,7 @@ export R_LIBS_USER="$HOME/R/library/%V"
 #-------------------------------------------------------------------------------
 
 # executables
-which bpython3 > /dev/null
+which bpython3 > /dev/null 2>&1
 if [ $? -eq 0 ]; then
     alias p3=$(which bpython3)
 else
@@ -395,7 +395,7 @@ alias .....="c ../../../.."
 alias ......="c ../../../../.."
 
 # only do something if zoxide is installed and the file $HOME/.bashrc.zoxide exists
-which zoxide > /dev/null
+which zoxide > /dev/null 2>&1
 if [ $? -eq 0 ]; then
     if [ -f $HOME/.bashrc.zoxide ]; then
         # remove the fallback alias to cd
