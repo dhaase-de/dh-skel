@@ -1,3 +1,5 @@
 .idea/
+*.bak*
 
 utils/bin/yubicopy.conf
+
