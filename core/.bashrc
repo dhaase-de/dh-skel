@@ -231,6 +231,7 @@ alias dusl="du -sch * | sort -h -r | less"
 alias nowstr="date '+%Y-%m-%d__%H-%M-%S'"
 
 # tmux - attach session if it exists, otherwise create new session
+alias tl="tmux ls"
 function tx() {
     tmux has-session &> /dev/null
     if [[ $? -eq 0 ]]; then
