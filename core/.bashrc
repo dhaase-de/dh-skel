@@ -206,6 +206,16 @@ function mkcd() {
    mkdir "$*" && cd "$1"
 }
 
+# cd into current day's tmp dir
+function ct() {
+    local tmp_dir="$HOME/tmp/$(date +%Y-%m-%d)"
+    if [[ ! -d "$tmp_dir" ]]; then
+        mkdir -p "$tmp_dir"
+    fi
+    cd "$tmp_dir" || return 1
+}
+
+
 # grep
 alias grp="grep --color=auto --ignore-case --with-filename --line-number"
 
