@@ -49,3 +49,10 @@ short = true
 
 [help]
 autocorrect = 0
+
+[include]
+
+# allow local overrides (this is especially useful for changing the author email
+# on different systems)
+path = ~/.gitconfig.local
+

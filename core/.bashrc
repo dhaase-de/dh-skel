@@ -292,6 +292,7 @@ alias g.="git status ."
 alias gd="git diff"
 alias gd.="git diff ."
 alias gl="git log --oneline --graph --all --decorate"
+alias gw="git config user.name && git config user.email"
 
 # Docker
 alias d="docker"
