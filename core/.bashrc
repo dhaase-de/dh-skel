@@ -215,6 +215,19 @@ function ct() {
     cd "$tmp_dir" || return 1
 }
 
+# tar: extract
+alias tu="tar -xvf"
+
+# tar: create .tar.gz from directory
+function tz() {
+    tar \
+    --create \
+    --gzip \
+    --verbose \
+    --file="${1%/}.tar.gz" \
+    --directory="$(dirname "$1")" \
+    "$(basename "$1")"
+}
 
 # grep
 alias grp="grep --color=auto --ignore-case --with-filename --line-number"
